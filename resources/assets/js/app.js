@@ -20,3 +20,15 @@ Vue.component('example', require('./components/Example.vue'));
 const app = new Vue({
     el: '#app'
 });
+
+$('#recipes-search input').on('keyup', function(){
+
+    var term = $(this).val();
+
+    $.ajax({
+        'url': '/api/recipes?search=' + term,
+        'success': function(data){
+            $('#recipes-list').replaceWith(data);
+        }
+    });
+});

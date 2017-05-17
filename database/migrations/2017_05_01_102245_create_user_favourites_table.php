@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRecipesTable extends Migration
+class CreateUserFavouritesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateRecipesTable extends Migration
      */
     public function up()
     {
-        Schema::create('recipes', function (Blueprint $table) {
+        Schema::create('user_favourites', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('title');
-            $table->text('content');
-            $table->text('image_url')->nullable();
+            $table->integer('recipe_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->timestamps();
-            $table->softDeletes();
-
+            
+            $table->foreign('recipe_id')->references('id')->on('recipes');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->timestamps();
         });
     }
 
@@ -33,6 +31,6 @@ class CreateRecipesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recipes');
+        Schema::dropIfExists('user_favourites');
     }
 }

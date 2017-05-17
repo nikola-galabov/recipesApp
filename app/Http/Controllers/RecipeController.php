@@ -8,6 +8,10 @@ use App\Http\Requests\RecipeRequest;
 
 class RecipeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +19,18 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::all();
+        $recipes = Recipe::with('usersFavourite')->get();
         
+        return view('recipe.list', compact('recipes'));
+    }
+
+    public function favourites()
+    {
+        $recipes = Recipe::whereHas('usersFavourite', function($favourite){
+            return $favourite->where('user_id', \Auth::user()->id);
+        })
+        ->get();
+
         return view('recipe.list', compact('recipes'));
     }
 
@@ -88,6 +102,23 @@ class RecipeController extends Controller
      */
     public function destroy(Recipe $recipe)
     {
-        //
+        $recipe->delete();
+
+        return back();
+    }
+
+    public function addToFavourites(Request $request, Recipe $recipe)
+    {
+        $request->user()->favouriteRecipes()->attach($recipe);
+
+        return back();
+    }
+
+    public function removeFromFavourites(Request $request, $id)
+    {
+        $recipe = Recipe::findOrFail($id);
+        $request->user()->favouriteRecipes()->detach($recipe);
+
+        return back();
     }
 }

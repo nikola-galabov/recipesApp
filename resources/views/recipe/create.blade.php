@@ -10,7 +10,7 @@
                     <form class="form-horizontal" role="form" method="POST" action="/recipes">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                             <label for="title" class="col-md-4 control-label">Title</label>
 
                             <div class="col-md-6">
@@ -24,21 +24,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="slug" class="col-md-4 control-label">Slug</label>
-
-                            <div class="col-md-6">
-                                <input id="slug" type="text" class="form-control" name="slug" value="{{ old('slug') }}" required autofocus>
-
-                                @if ($errors->has('slug'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('slug') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
                             <label for="title" class="col-md-4 control-label">Image</label>
 
                             <div class="col-md-6">
@@ -52,7 +38,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
                             <label for="content" class="col-md-4 control-label">Content</label>
 
                             <div class="col-md-6">

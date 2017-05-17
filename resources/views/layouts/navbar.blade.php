@@ -19,9 +19,15 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="/recipes/create">Create Rcipe</a>
-                </li>
+                @if (! Auth::guest())
+                    <li>
+                        <a href="/recipes/favourites">My Favourites</a>
+                    </li>
+
+                    <li>
+                        <a href="/recipes/create">Create Rcipe</a>
+                    </li>
+                @endif
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -37,6 +43,10 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="/recipes/favourites">My Favourites</a>
+                            </li>
+
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();

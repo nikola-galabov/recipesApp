@@ -30,9 +30,7 @@ class RecipeRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'slug' => 'required|unique:recipes|max:255',
-            'content' => 'required',
-            'published_at' => 'nullable|date',
+            'content' => 'required'
         ];
     }
 }
