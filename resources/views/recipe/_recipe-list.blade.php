@@ -9,13 +9,6 @@
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="pull-left">
-                                @if($recipe->isUserFavourite())
-                                    @include('recipe.addToFavouritesForm')
-                                @else
-                                    @include('recipe.removeFromFavouritesForm')
-                                @endif
-                            </div>
                             <div class="pull-right">
                                 <form action="/recipes/{{ $recipe->id }}" method="POST">
                                     {{ csrf_field() }}
