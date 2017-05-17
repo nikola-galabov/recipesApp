@@ -29,10 +29,8 @@ class RecipeRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'slug' => 'required|unique:recipes|max:255',
-            'content' => 'required',
-            'published_at' => 'nullable|date',
+            'title' => 'required|max:255',
+            'content' => 'required'
         ];
     }
 }

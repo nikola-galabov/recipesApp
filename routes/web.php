@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'RecipeController@index');
 
 Auth::routes();
 
 Route::resource('/recipes', 'RecipeController');
+Route::resource('/comments', 'CommentController');

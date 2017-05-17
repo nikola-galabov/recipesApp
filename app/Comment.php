@@ -5,28 +5,25 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Recipe extends Model
+class Comment extends Model
 {
     use SoftDeletes;
 
-    protected $dates = [ 
-        'deleted_at',
-    ];
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'title',
         'content',
-        'image_url',
         'user_id',
+        'recipe_id'
     ];
 
-    public function author() 
+    public function user()
     {
         return $this->belongsTo('App\User');
     }
 
-    public function comments()
+    public function recipe()
     {
-        return $this->hasMany('App\Comment');
+        return $this->belongsTo('App\Recipe');
     }
 }

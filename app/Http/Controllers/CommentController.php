@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Recipe;
+use App\Comment;
 use Illuminate\Http\Request;
-use App\Http\Requests\RecipeRequest;
 
-class RecipeController extends Controller
+class CommentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -20,9 +14,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::with('author', 'comments')->get();
-        
-        return view('recipe.list', compact('recipes'));
+        //
     }
 
     /**
@@ -32,43 +24,38 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        return view('recipe.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\RecipeRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RecipeRequest $request)
+    public function store(Request $request)
     {
-        $recipe = $request->all();
-        $recipe['user_id'] = $request->user()->id;
-        $recipe['published_at'] = \Carbon\Carbon::now();
-        Recipe::create($recipe);
-
-        return redirect('/');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Recipe  $recipe
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Recipe $recipe)
+    public function show(Comment $comment)
     {
-        return view('recipe.view', compact('recipe'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Recipe  $recipe
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Recipe $recipe)
+    public function edit(Comment $comment)
     {
         //
     }
@@ -77,10 +64,10 @@ class RecipeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Recipe  $recipe
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Recipe $recipe)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -88,10 +75,10 @@ class RecipeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Recipe  $recipe
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Recipe $recipe)
+    public function destroy(Comment $comment)
     {
         //
     }
