@@ -22,7 +22,7 @@ class Recipe extends Model
 
     public function author() 
     {
-        return $this->belongsTo('users', 'user_id');
+        return $this->belongsTo('App\User');
     }
 
     public function usersFavourite()
@@ -36,4 +36,9 @@ class Recipe extends Model
         
         return is_null($this->usersFavourite->where('id', $userId)->first());
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }	
 }

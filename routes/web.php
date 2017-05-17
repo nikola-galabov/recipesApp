@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'RecipeController@index');
 
 Auth::routes();
 
@@ -27,6 +27,7 @@ Route::get('/recipes/search', function (Request $request) {
 });
 
 Route::resource('/recipes', 'RecipeController');
+Route::resource('/comments', 'CommentController');
 
 Route::group(['prefix' => 'users'], function() {
     Route::get('/{id}/edit', 'UserController@edit');

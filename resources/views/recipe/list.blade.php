@@ -1,21 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <form id="recipes-search" action="/api/recepies" method="get">
+    <form id="recipes-search" action="/api/recepies" method="get">
                     <div class="form-group">
                         <input class="form-control" name="search" type="text" placeholder="Search...">
                     </div>
-                </form>
+    </form>
+    @foreach($recipes as $recipe)
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a href="/recipes/{{ $recipe->id }}">{{ $recipe->title }}</a>
+                </h3>
             </div>
-        </div>
+            <div class="panel-body">
+                <p>
+                    {{ substr($recipe->content, 0, 1000) }}...
+                </p>
 
-        <div class="row">
-            <div id="recipes-list" class="col-md-8 col-md-offset-2">
-                @include('recipe._recipe-list')
+                <a href="/recipes/{{ $recipe->id }}">Read more</a>
+            </div>
+            <div class="panel-footer clearfix">
+                <a class="pull-left" href="/reciepes/{{ $recipe->id }}">
+                    {{ $recipe->comments->count() }}
+                    <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                </a>
+                
+                <i class="pull-right">Last Modified: {{ $recipe->updated_at->toDateString() }}</i>
             </div>
         </div>
-    </div> 
+    @endforeach
 @endsection

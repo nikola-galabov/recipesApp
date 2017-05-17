@@ -19,7 +19,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::with('usersFavourite')->get();
+        $recipes = Recipe::with('usersFavourite', 'author', 'comments')->get();
         
         return view('recipe.list', compact('recipes'));
     }
