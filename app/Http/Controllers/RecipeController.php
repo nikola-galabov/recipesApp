@@ -24,6 +24,15 @@ class RecipeController extends Controller
         return view('recipe.list', compact('recipes'));
     }
 
+    public function search($term)
+    {
+        $recipes = Recipe::with('usersFavourite', 'author', 'comments')
+            ->where('title', 'like', "%$term%")
+            ->get();
+        
+        return view('recipe._recipe-list', compact('recipes'));
+    }
+
     public function favourites()
     {
         $recipes = Recipe::whereHas('usersFavourite', function($favourite){
@@ -54,7 +63,6 @@ class RecipeController extends Controller
     {
         $recipe = $request->all();
         $recipe['user_id'] = $request->user()->id;
-        $recipe['published_at'] = \Carbon\Carbon::now();
         Recipe::create($recipe);
 
         return redirect('/');

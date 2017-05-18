@@ -16,15 +16,7 @@ Route::get('/', 'RecipeController@index');
 Auth::routes();
 
 Route::get('/recipes/favourites', 'RecipeController@favourites');
-Route::get('/recipes/search', function (Request $request) {
-    dd($request->user());
-    $recipes = \App\Recipe::with('usersFavourite')
-        ->where('title', 'like', '%' . $request->input('search'). '%')
-        ->limit(50)
-        ->get();
-
-    return view('recipe._recipe-list', compact('recipes'));
-});
+Route::get('/recipes/search/{term}', 'RecipeController@search' );
 
 Route::resource('/recipes', 'RecipeController');
 Route::resource('/comments', 'CommentController');

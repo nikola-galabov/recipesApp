@@ -7,3 +7,32 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+body {
+    background-image: url('/bg.jpg');
+}
+
+.navbar {
+    height: 80px;
+}
+
+.navbar ul li a {
+    line-height: 40px;
+    font-size: 18px;
+}
+
+#brand-image {
+    max-height: 65px;
+}
+
+.btn-link.btn-star, .btn-link.btn-star:focus {
+    border: none!important;
+}
+
+.media, .media-body {
+    background-color: white;
+}
+
+.media {
+    padding: 5px;
+}

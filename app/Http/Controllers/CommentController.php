@@ -35,7 +35,15 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comment = [
+            'content' => $request->input('content'),
+            'user_id' => $request->user()->id,
+            'recipe_id' => $request->input('recipe_id')
+        ];
+
+        Comment::create($comment);
+
+        return back();
     }
 
     /**
